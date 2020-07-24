@@ -1,0 +1,27 @@
+{
+  "name": "week10-challenge_nodejs-eng-team-directory-generator",
+  "version": "1.0.0",
+  "description": "A terminal-based directory webpage generator for engineering teams",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jessicajernigan/week10-challenge_nodejs-eng-team-directory-generator.git"
+  },
+  "keywords": [
+    "node",
+    "jest",
+    "generator"
+  ],
+  "author": "jessicajernigan",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jessicajernigan/week10-challenge_nodejs-eng-team-directory-generator/issues"
+  },
+  "homepage": "https://github.com/jessicajernigan/week10-challenge_nodejs-eng-team-directory-generator#readme",
+  "devDependencies": {
+    "jest": "^26.1.0"
+  }
+}
