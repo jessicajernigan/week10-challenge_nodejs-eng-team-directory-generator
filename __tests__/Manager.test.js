@@ -1,5 +1,10 @@
-const checkIfEqual = require('../lib/random.js');
+const Manager = require('../lib/Manager.js');
 
-test('checks if 10 is equal to 10', () => {
-  expect(checkIfEqual(10, 10)).toBe(true);
-});
+test('Creates a new manager object', () => {
+  const manager = new Manager('Tony', '101', 'tony-soprano1999@aol.com', '3');
+
+  expect(manager.name).toBe('Tony');
+  expect(manager.eid).toBe('101');
+  expect(manager.email).toBe('tony-soprano1999@aol.com');
+  expect(manager.officeNum).toBe('3');
+})

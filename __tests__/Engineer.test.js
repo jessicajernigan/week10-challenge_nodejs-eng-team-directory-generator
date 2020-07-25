@@ -1,5 +1,10 @@
-const checkIfEqual = require('../lib/random.js');
+const Engineer = require('../lib/Engineer.js');
 
-test('checks if 10 is equal to 10', () => {
-  expect(checkIfEqual(10, 10)).toBe(true);
-});
+test('Creates a new engineer object', () => {
+  const engineer = new Engineer('Silvio', '100', 'silvio-dante1999@hotmail.com', 'silviodante');
+
+  expect(engineer.name).toBe('Silvio');
+  expect(engineer.eid).toBe('100');
+  expect(engineer.email).toBe('silvio-dante1999@hotmail.com');
+  expect(engineer.github).toBe('silviodante');
+})
