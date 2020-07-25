@@ -1,8 +1,8 @@
-// const formatPage = require('./src/format-page.js');
+const formatPage = require('./src/format-page.js');
 // const generatePage = require('./utils/generate-page.js');
 const inquirer = require('inquirer');
 
-const Employee = require('./lib/Employee.js');
+// const Employee = require('./lib/Employee.js');
 const Manager = require('./lib/Manager.js');
 const Engineer = require('./lib/Engineer.js');
 const Intern = require('./lib/Intern.js');
@@ -12,9 +12,11 @@ const teamArr = [];
 
 const managerPrompt = () => {
   console.log(`
- • = • = • = • = • = • = • = •
-|   Let's build your team!    |
- • = • = • = • = • = • = • = • 
+  • = • = • = • = • = • = • = • = • = • = • = • = • = •
+  |                                                     |
+  |      L E T ' S   B U I L D   Y O U R   T E A M      |  
+  |                                                     |
+   • = • = • = • = • = • = • = • = • = • = • = • = • = • 
   `);
   return inquirer.prompt([
     {
@@ -25,7 +27,7 @@ const managerPrompt = () => {
     {
       type: 'input',
       name: 'id',
-      message: 'What is the manager\'s employee ID number?'
+      message: 'What is manager\'s employee ID number?'
     },
     {
       type: 'input',
@@ -38,9 +40,17 @@ const managerPrompt = () => {
       message: 'What is the manager\'s office number?'
     }
   ])
-    .then(answers => {
-      let mgr = new Manager(answers)
-      teamArr.push(mgr)
+    .then((answers) => {
+      const { name, id, email, officeNum } = answers;
+      const manager = new Manager(name, id, email, officeNum);
+      const managerInput = {
+        role: manager.getRole(),
+        name: manager.getName(),
+        id: manager.getId(),
+        email: manager.getEmail(),
+        officeNum: manager.getOfficeNum(),
+      };
+      teamArr.push(managerInput)
     })
 };
 
@@ -66,9 +76,11 @@ const nextEntryPrompt = () => {
 
 const internPrompt = () => {
   console.log(`
- • = • = • = • = • = • = •
- |  Let's add an intern  |
- • = • = • = • = • = • = •
+  • = • = • = • = • = • = • = • = • = • = • = • = • = •
+  |                                                    |
+  |      L E T ' S   A D D   A N   I N T E R N         |  
+  |                                                    |
+  • = • = • = • = • = • = • = • = • = • = • = • = • = • 
   `);
   return inquirer.prompt([
     {
@@ -92,9 +104,17 @@ const internPrompt = () => {
       message: 'Where does the intern go to school?'
     }
   ])
-    .then(({ answers }) => {
-      this.int = new Intern(answers)
-      teamArr.push(this.int)
+    .then((answers) => {
+      const { name, id, email, school } = answers;
+      const intern = new Intern(name, id, email, school);
+      const internInput = {
+        role: intern.getRole(),
+        name: intern.getName(),
+        id: intern.getId(),
+        email: intern.getEmail(),
+        school: intern.getSchool(),
+      };
+      teamArr.push(internInput)
     })
     .then(nextEntryPrompt);
 };
@@ -102,9 +122,11 @@ const internPrompt = () => {
 const engineerPrompt = () => {
 
   console.log(`
- • = • = • = • = • = • = •
-|  Let's add an engineer  |
- • = • = • = • = • = • = •
+ • = • = • = • = • = • = • = • = • = • = • = • = • = •
+|                                                     |
+|      L E T ' S   A D D   A N   E N G I N E E R      |  
+|                                                     |
+ • = • = • = • = • = • = • = • = • = • = • = • = • = • 
   `);
   return inquirer.prompt([
     {
@@ -128,9 +150,17 @@ const engineerPrompt = () => {
       message: 'What is the engineer\'s github username?'
     }
   ])
-    .then(answers => {
-      let eng = new Engineer(answers)
-      teamArr.push(eng)
+    .then((answers) => {
+      const { name, id, email, github } = answers;
+      const engineer = new Engineer(name, id, email, github);
+      const engInput = {
+        role: engineer.getRole(),
+        name: engineer.getName(),
+        id: engineer.getId(),
+        email: engineer.getEmail(),
+        github: engineer.getGithub(),
+      };
+      teamArr.push(engInput)
     })
     .then(nextEntryPrompt);
 };
@@ -140,3 +170,4 @@ const engineerPrompt = () => {
 
 managerPrompt()
   .then(nextEntryPrompt)
+  .then(formatPage)
