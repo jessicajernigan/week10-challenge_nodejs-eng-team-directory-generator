@@ -23,5 +23,8 @@
   "homepage": "https://github.com/jessicajernigan/week10-challenge_nodejs-eng-team-directory-generator#readme",
   "devDependencies": {
     "jest": "^26.1.0"
+  },
+  "dependencies": {
+    "inquirer": "^7.3.3"
   }
 }
