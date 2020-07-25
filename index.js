@@ -92,7 +92,7 @@ const internPrompt = () => {
       message: 'Where does the intern go to school?'
     }
   ])
-    .then(answers => {
+    .then(({ answers }) => {
       let int = new Intern(answers)
       teamArr.push(int)
     })
