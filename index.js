@@ -93,8 +93,8 @@ const internPrompt = () => {
     }
   ])
     .then(({ answers }) => {
-      let int = new Intern(answers)
-      teamArr.push(int)
+      this.int = new Intern(answers)
+      teamArr.push(this.int)
     })
     .then(nextEntryPrompt);
 };
