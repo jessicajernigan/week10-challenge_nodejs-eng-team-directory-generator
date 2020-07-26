@@ -1,7 +1,5 @@
 const formatPage = require('./src/format-page.js');
-console.log('This is formatPage:', formatPage);
 const generatePage = require('./utils/generate-page.js');
-console.log('This is generatePage:', generatePage);
 const inquirer = require('inquirer');
 
 // const Employee = require('./lib/Employee.js');
@@ -78,6 +76,13 @@ const nextEntryPrompt = () => {
 
 const createPage = (teamArr) => {
   let htmlPage = formatPage(teamArr); // Creating HTML
+  console.log(`
+  • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = •
+  |                                                                        |
+  |      Y O U R   D I R E C T O R Y   IS   R E A D Y   T O   V I E W      |  
+  |                                                                        |
+  • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • 
+  `)
   generatePage(htmlPage); // Grabbing the HTML & writing it to the file
 };
 
@@ -177,5 +182,3 @@ const engineerPrompt = () => {
 
 managerPrompt()
   .then(nextEntryPrompt)
-  // .then(formatPage)
-  // .then(generatePage)

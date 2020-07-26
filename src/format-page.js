@@ -22,55 +22,55 @@ const generateHtml = (teamArr) => {
 
 const generateMgrCard = ({ name, id, email, officeNum }) => {
   return `
-  <div class="card" style="width: 25rem; text-align: center; margin-bottom:2em">
+  <div class="card" style="width: 25rem; text-align: center; margin-bottom:2em; box-shadow:10px 10px 10px rgba(0, 0, 0, .5)">
     <div class="card-header">
       <h4 class="card-title">${name}</h5>
-        <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
+        <h6 class="card-subtitle mb-2 text-muted style="margin-top: 5px">Manager</h6>
         <span class="oi oi-briefcase" style="padding:.5em"></span>
     </div>
     <div class="card-body">
       <ul class="list-group list-group-flush">
-        <li class="list-group-item">${id}</li>
-        <li class="list-group-item">${officeNum}</li>
-        <a href="#" class="list-group-item card-link">${email}</a>
+        <li class="list-group-item"><strong>ID: </strong>${id}</li>
+        <li class="list-group-item"><strong>Office: </strong>${officeNum}</li>
+        <a href="mailto:${email}" class="list-group-item card-link"><strong>Email: </strong>${email}</a>
       </ul>
     </div>
 </div>
   `;
 };
 
-const generateEngCard = ({ name, id, email, github }) => { 
+const generateEngCard = ({ name, id, email, github }) => {
   return `
-  <div class="card" style="width: 18rem; text-align: center; margin:1em 1em">
+  <div class="card" style="width: 18rem; text-align: center; margin:1em 1em; box-shadow:10px 10px 10px rgba(0, 0, 0, .5)">
   <div class="card-header">
     <h4 class="card-title">${name}</h5>
-      <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
+      <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 5px>Engineer</h6>
       <span class="oi oi-terminal" style="padding:.5em"></span>
     </div>
   <div class="card-body">
     <ul class="list-group list-group-flush">
-      <li class="list-group-item">${id}</li>
-      <a href="#" class="list-group-item card-link">${github}</a>
-      <a href="#" class="list-group-item card-link">${email}</a>
+      <li class="list-group-item"><strong>ID: </strong>${id}</li>
+      <a href="https://github.com/${github}" class="list-group-item card-link">${github}</a>
+      <a href="mailto:${email}" class="list-group-item card-link"><strong>Email: </strong>${email}</a>
     </ul>
   </div>
 </div>
   `
 }
 
-const generateIntCard = ({ name, id, email, school }) => { 
+const generateIntCard = ({ name, id, email, school }) => {
   return `
-  <div class="card" style="width: 18rem; text-align: center; margin:1em 1em">
+  <div class="card" style="width: 18rem; text-align: center; margin:1em 1em; box-shadow:10px 10px 10px rgba(0, 0, 0, .5)">
         <div class="card-header">
           <h4 class="card-title">${name}</h5>
-            <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
+            <h6 class="card-subtitle mb-2 text-muted" style="margin-top: 5px>Intern</h6>
             <span class="oi oi-monitor" style="padding:.5em"></span>
         </div>
         <div class="card-body">
           <ul class="list-group list-group-flush">
-            <li class="list-group-item">${id}</li>
-            <li class="list-group-item">${school}</li>
-            <a href="#" class="list-group-item card-link">${email}</a>
+            <li class="list-group-item"><strong>ID: </strong>${id}</li>
+            <li class="list-group-item"><strong>School: </strong>${school}</li>
+            <a href="mailto:${email}" class="list-group-item card-link"><strong>Email: </strong>${email}</a>
           </ul>
         </div>
       </div>
@@ -81,22 +81,9 @@ const generators = { manager: generateMgrCard, engineer: generateEngCard, intern
 
 module.exports = templateData => {
 
-  // const { manager, engineers, interns } = templateData;
   let cardTemplates = generateHtml(templateData);
-  // console.log("This is cardTemplates: ", cardTemplates)
   let mgrCard = cardTemplates.shift();
   let rnfCards = cardTemplates.join();
-  // console.log("This is the mgrCard: ", mgrCard);
-  // console.log("This is the rnfCard: ", rnfCards);
-
-
-  // templateData.forEach((item) => {
-  //   if (item.role === 'manager') {
-  //     mgrCard += item.html
-  //   } else {
-  //     rnfCards += item.html
-  //   }
-  // })
 
   return `
   <!DOCTYPE html>
