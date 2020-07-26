@@ -26,7 +26,6 @@
   - Still confused? Check out [this handy tutorial.]()
 
 
-
   ## Contribution Guidelines
   It's chaos; be kind. 
 
@@ -39,3 +38,8 @@
 
   ## Questions
   Please direct all inquiries to [jessicajernigan](https://github.com/jessicajernigan) via email at: [jernigan.jessica.leigh@gmail.com](mailto:jernigan.jessica.leigh@gmail.com?subject=Question%20About%20Command-Line%20Engineering%20Team%20Directory%20Generator)
+
+
+  ![cli screenshot](./src/images/cli.png)
+  ![cli screenshot](./src/images/full-screenshot-html.png)
+
