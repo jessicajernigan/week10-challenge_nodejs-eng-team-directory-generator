@@ -12,11 +12,11 @@ const teamArr = [];
 
 const managerPrompt = () => {
   console.log(`
-  • = • = • = • = • = • = • = • = • = • = • = • = • = •
-  |                                                     |
-  |      L E T ' S   B U I L D   Y O U R   T E A M      |  
-  |                                                     |
-   • = • = • = • = • = • = • = • = • = • = • = • = • = • 
+   • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • 
+  |                                                                         |
+  |      L E T ' S   B U I L D   Y O U R   T E A M   D I R E C T O R Y      |  
+  |                                                                         |
+   • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • 
   `);
   return inquirer.prompt([
     {
@@ -79,7 +79,7 @@ const createPage = (teamArr) => {
   console.log(`
   • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = •
   |                                                                        |
-  |      Y O U R   D I R E C T O R Y   IS   R E A D Y   T O   V I E W      |  
+  |     Y O U R   D I R E C T O R Y   I S   R E A D Y   T O   V I E W      |  
   |                                                                        |
   • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • = • 
   `)

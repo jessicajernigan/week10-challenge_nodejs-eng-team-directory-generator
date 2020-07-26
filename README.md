@@ -12,33 +12,30 @@
   * [Questions](#questions)
   
 
-  ## Description  
-  Generate a fully styled, functional directory to feature each member of your engineering team, all from the command-line. Showcase links to email and Github accounts in one convenient location. 
 
-  ## Installation  
-  Test 
+  ## Description  
+  Generate a fully styled, color-coded, functional team directory right from the command-line. Each color-coded tile displays links to relevant details and contact information about each of your team members.
+
+
 
   ## Usage
-  Test 
+  - Run ```node index``` to get started
+  - Follow the prompts
+  - Once you've added every team member, select ```'I am finished building my team'``` to exit the program
+  - Open ```index.html``` in a browser to view the end result
+  - Still confused? Check out [this handy tutorial.]()
+
+
 
   ## Contribution Guidelines
   It's chaos; be kind. 
 
+
+
   ## Tests  
-  Test
+  Run ```npm run test``` to view all unit tests.
+
+
 
   ## Questions
   Please direct all inquiries to [jessicajernigan](https://github.com/jessicajernigan) via email at: [jernigan.jessica.leigh@gmail.com](mailto:jernigan.jessica.leigh@gmail.com?subject=Question%20About%20Command-Line%20Engineering%20Team%20Directory%20Generator)
-
-
-
-<!-- WHEN I start the application
-THEN I am prompted to enter the team manager’s name, employee ID, email address, and office number
-WHEN I enter the team manager’s name, employee ID, email address, and office number
-THEN I am presented with a menu with the option to add an engineer or an intern or to finish building my team
-WHEN I select the engineer option
-THEN I am prompted to enter the engineer’s name, ID, email, and GitHub username, and I am taken back to the menu
-WHEN I select the intern option
-THEN I am prompted to enter the intern’s name, ID, email, and school, and I am taken back to the menu
-WHEN I decide to finish building my team
-THEN I exit the application, and the HTML is generated -->
