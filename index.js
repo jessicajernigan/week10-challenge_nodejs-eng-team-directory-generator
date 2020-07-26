@@ -1,5 +1,7 @@
 const formatPage = require('./src/format-page.js');
-// const generatePage = require('./utils/generate-page.js');
+console.log('This is formatPage:', formatPage);
+const generatePage = require('./utils/generate-page.js');
+console.log('This is generatePage:', generatePage);
 const inquirer = require('inquirer');
 
 // const Employee = require('./lib/Employee.js');
@@ -69,10 +71,16 @@ const nextEntryPrompt = () => {
         break;
       case "Intern": internPrompt();
         break;
-      default: console.log('teamArr now consists of:', teamArr);
+      default: createPage(teamArr);
     }
   });
 }
+
+const createPage = (teamArr) => {
+  let htmlPage = formatPage(teamArr); // Creating HTML
+  generatePage(htmlPage); // Grabbing the HTML & writing it to the file
+};
+
 
 const internPrompt = () => {
   console.log(`
@@ -167,7 +175,7 @@ const engineerPrompt = () => {
 
 
 
-
 managerPrompt()
   .then(nextEntryPrompt)
-  .then(formatPage)
+  // .then(formatPage)
+  // .then(generatePage)

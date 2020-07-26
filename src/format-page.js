@@ -1,93 +1,196 @@
-// const generateMgr
+const generateHtml = (teamArr) => {
+  let cardsArray = []
 
-// const generateEngingeers
-// must be an array
+  teamArr.forEach((item) => {
+    let cardHtml
+    switch (item.role) {
+      case 'manager':
+        cardHtml = generators.manager(item);
+        break
+      case 'intern':
+        cardHtml = generators.intern(item);
+        break
+      case 'engineer':
+        cardHtml = generators.engineer(item);
+        break
+    }
+    cardsArray.push(cardHtml);
+  });
+  return cardsArray;
+}
 
-// const generateInterns
-// must be an array
 
-const generateEmployeeCards = teamArr => {
+const generateMgrCard = ({ name, id, email, officeNum }) => {
   return `
-    <section class="my-3" id="portfolio">
-      <h2 class="text-dark bg-primary p-2 display-inline-block">Work</h2>
-      <div class="flex-row justify-space-between">
-      ${teamArr
-      .filter(({ role }) => feature)
-      .map(({ name, description, languages, link }) => {
-        return `
-          <div class="col-12 mb-2 bg-dark text-light p-3">
-            <h3 class="portfolio-item-title text-light">${name}</h3>
-            <h5 class="portfolio-languages">
-              Built With:
-              ${languages.join(', ')}
-            </h5>
-            <p>${description}</p>
-            <a href="${link}" class="btn"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
-          </div>
-        `;
-      })
-      .join('')}
-
-      ${projectsArr
-      .filter(({ feature }) => !feature)
-      .map(({ name, description, languages, link }) => {
-        return `
-          <div class="col-12 col-md-6 mb-2 bg-dark text-light p-3 flex-column">
-            <h3 class="portfolio-item-title text-light">${name}</h3>
-            <h5 class="portfolio-languages">
-              Built With:
-              ${languages.join(', ')}
-            </h5>
-            <p>${description}</p>
-            <a href="${link}" class="btn mt-auto"><i class="fab fa-github mr-2"></i>View Project on GitHub</a>
-          </div>
-        `;
-      })
-      .join('')}
-      </div>
-    </section>
+  <div class="card" style="width: 25rem; text-align: center; margin-bottom:2em">
+    <div class="card-header">
+      <h4 class="card-title">${name}</h5>
+        <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
+        <span class="oi oi-briefcase" style="padding:.5em"></span>
+    </div>
+    <div class="card-body">
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item">${id}</li>
+        <li class="list-group-item">${officeNum}</li>
+        <a href="#" class="list-group-item card-link">${email}</a>
+      </ul>
+    </div>
+</div>
   `;
 };
 
+const generateEngCard = ({ name, id, email, github }) => { 
+  return `
+  <div class="card" style="width: 18rem; text-align: center; margin:1em 1em">
+  <div class="card-header">
+    <h4 class="card-title">${name}</h5>
+      <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
+      <span class="oi oi-terminal" style="padding:.5em"></span>
+    </div>
+  <div class="card-body">
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item">${id}</li>
+      <a href="#" class="list-group-item card-link">${github}</a>
+      <a href="#" class="list-group-item card-link">${email}</a>
+    </ul>
+  </div>
+</div>
+  `
+}
+
+const generateIntCard = ({ name, id, email, school }) => { 
+  return `
+  <div class="card" style="width: 18rem; text-align: center; margin:1em 1em">
+        <div class="card-header">
+          <h4 class="card-title">${name}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
+            <span class="oi oi-monitor" style="padding:.5em"></span>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">${id}</li>
+            <li class="list-group-item">${school}</li>
+            <a href="#" class="list-group-item card-link">${email}</a>
+          </ul>
+        </div>
+      </div>
+  `
+}
+
+const generators = { manager: generateMgrCard, engineer: generateEngCard, intern: generateIntCard };
 
 module.exports = templateData => {
- // Destructure page data by section
 
- const { manager, engineers, interns, ...theRest } = templateData;
+  // const { manager, engineers, interns } = templateData;
+  let cardTemplates = generateHtml(templateData);
+  // console.log("This is cardTemplates: ", cardTemplates)
+  let mgrCard = cardTemplates.shift();
+  let rnfCards = cardTemplates.join();
+  // console.log("This is the mgrCard: ", mgrCard);
+  // console.log("This is the rnfCard: ", rnfCards);
 
- return `
+
+  // templateData.forEach((item) => {
+  //   if (item.role === 'manager') {
+  //     mgrCard += item.html
+  //   } else {
+  //     rnfCards += item.html
+  //   }
+  // })
+
+  return `
   <!DOCTYPE html>
-  <html lang="en">
+<html lang="en">
 
-  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Portfolio Demo</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css?family=Public+Sans:300i,300,500&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
-  </head>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Meet the Team</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+    integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+  <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/open-iconic/1.1.1/font/css/open-iconic-bootstrap.min.css"
+    integrity="sha256-BJ/G+e+y7bQdrYkS2RBTyNfBHpA9IuGaPmf9htub5MQ=" crossorigin="anonymous" />
+</head>
 
-  <body>
-    <header>
-      <div class="container flex-row justify-space-between align-center py-3">
-        <h1 class="page-title text-secondary bg-dark py-2 px-3">Meet the Team</h1>
-        <nav class="flex-row">
-          <a class="ml-2 my-1 px-2 py-1 bg-secondary text-dark" 
-          href="https://github.com/${header.github}">GitHub</a>
-        </nav>
+<body>
+  <header>
+    <div class="jumbotron jumbotron-fluid" style="text-align:center; background-color:cadetblue; color:white">
+      <div class="container">
+        <h1 class="display-4">Meet the Team</h1>
       </div>
-    </header>
-    <main class="container my-5">
-      ${generateMgr(manager)}
-      ${generateEngineers(engineers)}
-      ${generateInterns(interns)}
-    </main>
-    <footer class="container text-center py-3">
-      <h3 class="text-dark">&copy; ${new Date().getFullYear()} by ${header.name}</h3>
-    </footer>
-  </body>
-  </html>
+    </div>
+  </header>
+
+  <div class="container">
+    <div id="mgr-row" class="row row-cols-1 row-cols-sm-2 row-cols-md-4" style="justify-content:center">
+    ${mgrCard}
+    </div>
+
+    <div id="ranknfile-row" class="row row-cols-1 row-cols-sm-2 row-cols-md-4" style="justify-content:center">
+    ${rnfCards}
+    </div>
+
+  </div>
+</body>
+
+</html>
   `;
 };
+
+
+
+// E X A M P L E   C A R D S 
+/*
+
+MANAGER
+      <div class="card" style="width: 25rem; text-align: center; margin-bottom:2em">
+        <div class="card-header">
+          <h4 class="card-title">Mgrname</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Manager</h6>
+            <span class="oi oi-briefcase" style="padding:.5em"></span>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">id #12</li>
+            <li class="list-group-item">officeNum</li>
+            <a href="#" class="list-group-item card-link">email@email.com</a>
+          </ul>
+        </div>
+      </div>
+
+
+ENGINEER
+      <div class="card" style="width: 18rem; text-align: center; margin:1em 1em">
+        <div class="card-header">
+          <h4 class="card-title">Engname</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Engineer</h6>
+            <span class="oi oi-terminal" style="padding:.5em"></span>
+          </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">id #12</li>
+            <a href="#" class="list-group-item card-link">github</a>
+            <a href="#" class="list-group-item card-link">email@email.com</a>
+          </ul>
+        </div>
+      </div>
+
+
+INTERN
+      <div class="card" style="width: 18rem; text-align: center; margin:1em 1em">
+        <div class="card-header">
+          <h4 class="card-title">Internname</h5>
+            <h6 class="card-subtitle mb-2 text-muted">Intern</h6>
+            <span class="oi oi-monitor" style="padding:.5em"></span>
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">id #12</li>
+            <li class="list-group-item">School U</li>
+            <a href="#" class="list-group-item card-link">email@email.com</a>
+          </ul>
+        </div>
+      </div>
+
+*/
